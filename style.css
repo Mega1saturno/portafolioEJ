@@ -564,6 +564,7 @@ footer {
         justify-content: space-between;
         align-items: center;
         padding: 10px 0;
+        flex-wrap: wrap; /* Permitir que el menú vaya debajo */
     }
 
     .logo {
@@ -583,8 +584,9 @@ footer {
     }
     
     header nav ul {
-        justify-content: space-between; /* Espaciar uniformemente los 5 links */
+        justify-content: space-around; /* Espaciar uniformemente los 5 links */
         flex-wrap: nowrap; /* CLAVE: Evitar que los enlaces se rompan en dos líneas */
+        padding: 5px 0; /* Un poco de padding vertical */
     }
     
     header nav ul li a {
@@ -595,8 +597,10 @@ footer {
     /* HERO: Centrado de Texto y Barra Social */
     .hero-portrait {
         min-height: 70vh; 
+        padding-top: 120px; /* Asegura espacio bajo el nuevo menú */
     }
     
+    /* CLAVE para centrar: .portrait-container ya tiene text-align: center; */
     .portrait-photo-bg {
         width: 180px;
         height: 180px;
@@ -609,15 +613,12 @@ footer {
         display: none;
     }
     
-    /* Centrado de texto (Ya debe estar centrado gracias a .portrait-container y .hero-text) */
+    /* El texto ya está centrado gracias a .hero-text {text-align: center} */
     .hero-text h1 {
         font-size: 2.5em;
-        /* Asegura que el texto esté centrado, aunque ya lo está por .hero-text {text-align: center} */
-        text-align: center;
     }
     .hero-text .subtitle {
         font-size: 1em;
-        text-align: center;
     }
     
     /* Barra Social (Se mueve del lateral al centro inferior) */
