@@ -54,7 +54,7 @@ section {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
-/* Header y Navegación */
+/* Header y Navegación (DEFAULT/DESKTOP) */
 header {
     padding: 20px 0;
     position: sticky;
@@ -74,12 +74,7 @@ header {
     margin: 0 auto;
 }
 
-/* Ocultar el nuevo contenedor en desktop para que el Flexbox original funcione */
-.logo-and-button-row {
-    display: contents; 
-}
-
-
+/* En desktop, el logo (order 0), la nav (order 0) y el btn-cv (order 0) se muestran en orden, justificados */
 .logo {
     font-size: 1.5em;
     font-weight: 600;
@@ -192,7 +187,7 @@ header nav ul li a:hover {
     color: var(--color-secundario);
 }
 
-/* Formas de Fondo Sutiles (como en la imagen) */
+/* Formas de Fondo Sutiles */
 .hero-portrait::before,
 .hero-portrait::after {
     content: '';
@@ -341,7 +336,7 @@ header nav ul li a:hover {
 }
 
 .galeria-item {
-    background-color: var(--color-burbuja); /* Se corrigió a burbuja, no había color-gris-claro */
+    background-color: var(--color-burbuja);
     height: 250px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -487,21 +482,22 @@ footer {
 
 
 /* ========================================================================= */
-/* --- MEDIA QUERIES PARA RESPONSIVIDAD (CORREGIDAS Y AJUSTADAS) --- */
+/* --- MEDIA QUERIES PARA RESPONSIVIDAD (AJUSTES FINALES) --- */
 /* ========================================================================= */
 
 
 /* Tablets y Dispositivos Medianos (max-width: 992px) */
 @media (max-width: 992px) {
     
-    /* Header: Mantenemos el comportamiento de wrap si es necesario */
+    /* Header: Permite que el contenido se envuelva si es necesario */
     .header-container {
+        /* Permitimos que la navegación y el botón se envuelvan */
         flex-wrap: wrap; 
         justify-content: center;
     }
     
     header nav {
-        order: 3; 
+        order: 3; /* Mover la navegación al final */
         width: 100%;
         margin-top: 10px;
     }
@@ -509,6 +505,10 @@ footer {
     header nav ul {
         justify-content: center;
         flex-wrap: wrap;
+    }
+    
+    .logo, .btn-cv {
+        margin: 5px 10px; /* Separar logo y botón en tablet */
     }
     
     /* Hero */
@@ -560,37 +560,35 @@ footer {
         font-size: 2em;
     }
     
-    /* HEADER: Estructura de apilamiento */
+    /* HEADER: Estructura de dos líneas */
     .header-container {
-        flex-direction: column; /* Apilamos Logo/Botón y luego Nav */
+        flex-direction: row; /* Volvemos a fila para forzar el wrap */
+        flex-wrap: wrap; /* CLAVE: Permite que el NAV se caiga a la línea 2 */
+        justify-content: space-between; /* Separa logo y botón */
         align-items: center;
         padding: 10px 0;
-        gap: 5px; /* Reducimos el gap vertical para que se vea compacto */
+        gap: 10px 0;
     }
     
-    /* Contenedor de Logo y Botón CV (Línea superior) */
-    .logo-and-button-row {
-        display: flex;
-        width: 100%;
-        justify-content: space-between; /* CLAVE: SEPARA ErasmoJim y Descargar CV */
-        align-items: center;
-        padding: 0 20px; /* Padding para que no se pegue a los bordes */
-    }
-
+    /* Línea 1: Logo (Izquierda) y Botón CV (Derecha) */
     .logo {
+        order: 1; /* Posición 1: Extremo Izquierdo */
         font-size: 1.5em; 
         margin: 0;
+        flex-grow: 1; /* Permite que tome el espacio disponible */
     }
 
     .btn-cv {
+        order: 2; /* Posición 2: Extremo Derecho */
         margin: 0;
         padding: 6px 10px; 
         font-size: 0.9em;
     }
     
-    /* Navegación (Línea inferior) */
+    /* Línea 2: Navegación (Centrada) */
     header nav {
-        width: 100%;
+        order: 3; /* Posición 3: Cae a la línea de abajo */
+        width: 100%; /* CLAVE: Ocupa todo el ancho de la línea 2 */
         margin-top: 5px; 
     }
     
@@ -599,12 +597,12 @@ footer {
         flex-wrap: nowrap;
         padding: 5px 0;
         width: 98%;
-        margin: 0 auto;
+        margin: 0 auto; /* Centrar la lista horizontalmente */
     }
     
     header nav ul li a {
-        padding: 5px 3px; /* Reducir padding horizontal */
-        font-size: 0.7em; /* Reducir el texto del menú para que quepa */
+        padding: 5px 3px; 
+        font-size: 0.7em; 
     }
     
     /* HERO: Centrado de Texto y Foto */
