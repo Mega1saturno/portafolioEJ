@@ -1,0 +1,453 @@
+/* Variables y Reseteo Básico (Ajustado) */
+:root {
+    /* Usando colores verdes para coherencia con las insignias NetAcad */
+    --color-primario: #28a745; /* Verde fuerte (NetAcad/Cisco) - Para links, títulos y detalles importantes */
+    --color-secundario: #1e7e34; /* Verde más oscuro - Para hover y botones */
+    --color-texto-dark: #222; /* Texto principal oscuro y audaz */
+    --color-texto-light: #555;
+    --color-fondo: #fcfcff; /* Blanco muy sutil */
+    --color-claro: #ffffff;
+    --color-burbuja: rgba(40, 167, 69, 0.1); /* Color de fondo muy sutil, basado en el nuevo primario */
+    --font-principal: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-principal);
+    color: var(--color-texto-light);
+    line-height: 1.6;
+    background-color: var(--color-fondo);
+    /* Fondo sutilmente texturizado como en la imagen */
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23e6e6e6' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zm1 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tipografía y Secciones */
+h1, h2, h3 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: var(--color-texto-dark);
+}
+
+h1 { font-size: 3.5em; font-weight: 700; }
+h3 { font-size: 2em; text-align: center; margin-bottom: 40px; }
+
+section {
+    padding: 80px 0;
+}
+
+.section-separator {
+    height: 1px;
+    width: 50%;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Header y Navegación */
+header {
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li a {
+    color: var(--color-texto-light);
+    text-decoration: none;
+    padding: 0 20px;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+header nav ul li a:hover {
+    color: var(--color-primario);
+}
+
+.btn-cv {
+    background-color: var(--color-primario);
+    color: var(--color-claro);
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-cv:hover {
+    background-color: var(--color-secundario);
+}
+
+/* Sección Hero (Portrait Style) */
+.hero-portrait {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.portrait-container {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.portrait-photo-bg {
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background-color: var(--color-burbuja);
+    display: inline-block;
+    position: relative;
+    margin: 0 auto 30px;
+    overflow: hidden;
+}
+
+.portrait-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.hero-text {
+    margin-top: 20px;
+}
+
+.hero-text h1 {
+    margin-bottom: 5px;
+}
+
+.hero-text .subtitle {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: var(--color-primario);
+}
+
+/* Barra de Redes Sociales */
+.social-bar {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 50;
+}
+
+.social-bar a {
+    font-size: 1.5em;
+    color: var(--color-texto-light);
+    transition: color 0.3s;
+}
+
+.social-bar a:hover {
+    color: var(--color-secundario);
+}
+
+/* Formas de Fondo Sutiles (como en la imagen) */
+.hero-portrait::before,
+.hero-portrait::after {
+    content: '';
+    position: absolute;
+    opacity: 0.3;
+    filter: blur(50px);
+}
+
+.hero-portrait::before {
+    top: 10%;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    background-color: var(--color-primario);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero-portrait::after {
+    bottom: 5%;
+    right: 0;
+    width: 400px;
+    height: 200px;
+    background-color: var(--color-secundario);
+    border-radius: 50%;
+    transform: translate(50%, 50%) rotate(45deg);
+}
+
+
+/* SECCIONES SECUNDARIAS */
+.perfil, .servicios, .portafolio, .contacto {
+    text-align: center;
+}
+
+.credenciales-grid {
+    display: flex;
+    gap: 30px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.credencial {
+    flex: 1;
+    background-color: var(--color-claro);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--color-primario);
+}
+
+/* Insignias */
+.insignia-detalle {
+    text-align: center;
+}
+
+.insignia-img {
+    width: 100px; 
+    height: auto;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+    cursor: pointer; 
+}
+
+.credencial:hover .insignia-img {
+    transform: scale(1.05) rotate(1deg); 
+}
+
+.credencial h4 {
+    color: var(--color-texto-dark);
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.credencial p {
+    font-size: 0.95em;
+    color: var(--color-texto-light);
+    margin-bottom: 15px;
+}
+
+/* Estilo del botón de Certificación */
+.btn-certificado {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: var(--color-secundario);
+    color: var(--color-claro);
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+.btn-certificado:hover {
+    background-color: var(--color-primario);
+    transform: translateY(-2px);
+}
+
+/* Estilos de cuadrícula para otros elementos */
+.servicio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.servicio-card {
+    background-color: var(--color-claro);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.servicio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.servicio-card h4 {
+    color: var(--color-primario);
+    margin-bottom: 15px;
+}
+
+.portafolio-galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.galeria-item {
+    background-color: var(--color-gris-claro);
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Contacto - Formulario */
+.contacto form {
+    max-width: 600px;
+    margin: 30px auto 0;
+    padding: 30px;
+    background-color: var(--color-claro);
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.contacto label {
+    font-weight: 600;
+    color: var(--color-texto-dark);
+}
+
+.contacto input[type="text"], 
+.contacto input[type="email"], 
+.contacto select,
+.contacto textarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: block; 
+    width: 100%;
+    margin-top: 15px;
+    background-color: var(--color-primario);
+    font-size: 1.1em;
+    padding: 15px;
+    border-radius: 6px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: var(--color-secundario);
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-texto-dark);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9em;
+}
+
+
+/* --- Estilos para la funcionalidad Lightbox (Visor de Insignias y Certificados) --- */
+
+.lightbox {
+    display: none; 
+    position: fixed; 
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.9); 
+}
+
+/* Contenedor principal que tiene la animación */
+.lightbox-content-container {
+    /* Por defecto, tamaño pequeño para que la imagen lo determine */
+    max-width: 90%; 
+    max-height: 90vh; 
+    width: auto;
+    height: auto;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    background-color: transparent; 
+}
+
+/* ESTILO CLAVE: Cuando el contenedor está en modo IFRAME (certificado), cambia su tamaño */
+.lightbox-content-container.iframe-mode {
+    width: 85%;      
+    height: 90vh;    
+    max-width: 1000px; 
+    background-color: #fff; /* Fondo blanco para el certificado/PDF */
+}
+
+/* Imagen dentro del contenedor */
+.lightbox-img-content {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block; 
+}
+
+/* Iframe dentro del contenedor */
+.lightbox-iframe-content {
+    width: 100%;
+    height: 100%;
+    display: none; /* Controlado por JS, oculto por defecto */
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)} 
+    to {transform: scale(1)}
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #f1f1f1;
+    font-size: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--color-primario);
+    text-decoration: none;
+    opacity: 0.8;
+}
