@@ -121,6 +121,7 @@ header nav ul li a:hover {
     padding-top: 50px; /* Espacio para que no toque la barra de navegación */
 }
 
+/* Contenedor principal del Hero que garantiza el centrado */
 .portrait-container {
     text-align: center; /* CLAVE: Centrar el contenido de la foto y texto */
     position: relative;
@@ -150,7 +151,7 @@ header nav ul li a:hover {
 
 .hero-text {
     margin-top: 20px;
-    text-align: center; /* CLAVE: Asegurar centrado del texto Erasmo Jim y subtítulo */
+    text-align: center; /* Asegura centrado del texto Erasmo Jim y subtítulo */
 }
 
 .hero-text h1 {
@@ -163,14 +164,14 @@ header nav ul li a:hover {
     color: var(--color-primario);
 }
 
-/* Barra de Redes Sociales */
+/* Barra de Redes Sociales (Por defecto, a la izquierda y vertical) */
 .social-bar {
     position: absolute;
     left: 50px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* CLAVE: Íconos uno debajo del otro */
     gap: 20px;
     z-index: 50;
 }
@@ -515,15 +516,15 @@ footer {
         height: 280px;
     }
     
-    /* Barra Social: Mover al centro debajo del texto */
+    /* Barra Social: Restaurada la posición vertical lateral */
     .social-bar {
-        position: static;
-        flex-direction: row;
-        gap: 30px;
-        margin-top: 20px;
-        transform: none;
-        width: 100%;
-        justify-content: center;
+        position: absolute;
+        left: 30px; /* Acercar un poco más al borde en móvil */
+        top: 50%;
+        transform: translateY(-50%);
+        flex-direction: column; /* CLAVE: Vertical */
+        gap: 20px;
+        z-index: 50;
     }
     
     /* Credenciales: Apilar verticalmente */
@@ -560,21 +561,24 @@ footer {
     
     /* HEADER: Arreglo clave para el menú lineal */
     .header-container {
-        flex-direction: row; /* CLAVE: Forzar la dirección horizontal */
+        /* Usamos flex-wrap para que el menú pueda ir debajo, pero lo forzamos a ser lineal */
+        flex-direction: row; 
         justify-content: space-between;
         align-items: center;
         padding: 10px 0;
-        flex-wrap: wrap; /* Permitir que el menú vaya debajo */
+        flex-wrap: wrap; 
     }
 
     .logo {
-        order: 1; /* ErasmoJim a la izquierda */
+        order: 1; 
         margin: 0;
     }
 
     .btn-cv {
-        order: 2; /* Botón CV a la derecha */
+        order: 2; 
         margin: 0;
+        padding: 6px 10px; /* Reducir tamaño del botón CV */
+        font-size: 0.9em;
     }
     
     header nav {
@@ -584,50 +588,46 @@ footer {
     }
     
     header nav ul {
-        justify-content: space-around; /* Espaciar uniformemente los 5 links */
+        justify-content: space-between; /* Espaciar uniformemente los 5 links */
         flex-wrap: nowrap; /* CLAVE: Evitar que los enlaces se rompan en dos líneas */
-        padding: 5px 0; /* Un poco de padding vertical */
+        padding: 5px 0;
     }
     
     header nav ul li a {
         padding: 5px 6px;
-        font-size: 0.8em;
+        font-size: 0.75em; /* Reducir aún más el texto del menú */
     }
     
-    /* HERO: Centrado de Texto y Barra Social */
+    /* HERO: Centrado de Texto y Foto */
     .hero-portrait {
         min-height: 70vh; 
-        padding-top: 120px; /* Asegura espacio bajo el nuevo menú */
+        padding-top: 80px; 
     }
     
-    /* CLAVE para centrar: .portrait-container ya tiene text-align: center; */
+    /* Centrado de la foto y el texto (Ya está configurado en el bloque principal con text-align: center) */
     .portrait-photo-bg {
         width: 180px;
         height: 180px;
         margin-bottom: 20px;
     }
 
-    /* Ocultar las formas de fondo */
-    .hero-portrait::before,
-    .hero-portrait::after {
-        display: none;
-    }
-    
-    /* El texto ya está centrado gracias a .hero-text {text-align: center} */
     .hero-text h1 {
         font-size: 2.5em;
+        text-align: center;
     }
     .hero-text .subtitle {
         font-size: 1em;
+        text-align: center;
     }
     
-    /* Barra Social (Se mueve del lateral al centro inferior) */
+    /* Barra Social: Reestablecida la posición vertical lateral */
     .social-bar {
-        position: static; /* CLAVE: Quitar la posición absoluta del lateral */
-        flex-direction: row; /* CLAVE: Horizontal */
-        justify-content: center; /* CLAVE: Centrar iconos */
-        margin-top: 15px;
-        gap: 20px;
+        position: absolute; 
+        left: 20px; /* Mover más cerca del borde para liberar espacio */
+        top: 50%;
+        transform: translateY(-50%);
+        flex-direction: column; /* CLAVE: Vertical */
+        gap: 15px; /* Reducir espacio entre iconos */
     }
 
     /* Ajuste de altura de cajas en Capacitación y Portafolio */
