@@ -74,6 +74,12 @@ header {
     margin: 0 auto;
 }
 
+/* Ocultar el nuevo contenedor en desktop para que el Flexbox original funcione */
+.logo-and-button-row {
+    display: contents; 
+}
+
+
 .logo {
     font-size: 1.5em;
     font-weight: 600;
@@ -118,12 +124,12 @@ header nav ul li a:hover {
     min-height: 80vh;
     position: relative;
     overflow: hidden;
-    padding-top: 50px; /* Espacio para que no toque la barra de navegación */
+    padding-top: 50px; 
 }
 
 /* Contenedor principal del Hero que garantiza el centrado */
 .portrait-container {
-    text-align: center; /* CLAVE: Centrar el contenido de la foto y texto */
+    text-align: center;
     position: relative;
     z-index: 10;
 }
@@ -151,7 +157,7 @@ header nav ul li a:hover {
 
 .hero-text {
     margin-top: 20px;
-    text-align: center; /* Asegura centrado del texto Erasmo Jim y subtítulo */
+    text-align: center;
 }
 
 .hero-text h1 {
@@ -171,7 +177,7 @@ header nav ul li a:hover {
     top: 50%;
     transform: translateY(-50%);
     display: flex;
-    flex-direction: column; /* CLAVE: Íconos uno debajo del otro */
+    flex-direction: column; 
     gap: 20px;
     z-index: 50;
 }
@@ -335,7 +341,7 @@ header nav ul li a:hover {
 }
 
 .galeria-item {
-    background-color: var(--color-burbuja); 
+    background-color: var(--color-burbuja); /* Se corrigió a burbuja, no había color-gris-claro */
     height: 250px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -407,7 +413,7 @@ footer {
 }
 
 
-/* --- Estilos para la funcionalidad Lightbox (Visor de Insignias y Certificados) --- */
+/* --- Estilos para la funcionalidad Lightbox --- */
 
 .lightbox {
     display: none; 
@@ -453,7 +459,7 @@ footer {
 .lightbox-iframe-content {
     width: 100%;
     height: 100%;
-    display: none; /* Controlado por JS, oculto por defecto */
+    display: none; 
 }
 
 @keyframes zoom {
@@ -488,14 +494,14 @@ footer {
 /* Tablets y Dispositivos Medianos (max-width: 992px) */
 @media (max-width: 992px) {
     
-    /* Header: Permite que el contenido se envuelva si es necesario */
+    /* Header: Mantenemos el comportamiento de wrap si es necesario */
     .header-container {
         flex-wrap: wrap; 
         justify-content: center;
     }
     
     header nav {
-        order: 3; /* Mover la navegación al final */
+        order: 3; 
         width: 100%;
         margin-top: 10px;
     }
@@ -516,15 +522,10 @@ footer {
         height: 280px;
     }
     
-    /* Barra Social: Restaurada la posición vertical lateral */
+    /* Barra Social: Vertical a la izquierda */
     .social-bar {
-        position: absolute;
-        left: 30px; /* Acercar un poco más al borde en móvil */
-        top: 50%;
-        transform: translateY(-50%);
-        flex-direction: column; /* CLAVE: Vertical */
-        gap: 20px;
-        z-index: 50;
+        left: 30px; 
+        flex-direction: column; 
     }
     
     /* Credenciales: Apilar verticalmente */
@@ -533,13 +534,13 @@ footer {
         gap: 20px;
     }
     
-    /* Capacitación: Forzar el apilamiento de texto e imagen/video */
+    /* Capacitación: Ajuste de cajas */
     #training .servicio-card > div { 
         flex-direction: column; 
     }
     
     #training .servicio-card > div > div:nth-child(2) {
-        order: -1; /* Mover la caja de la galería (imagen/video) al inicio */
+        order: -1; 
     }
     
     #training .galeria-item {
@@ -559,26 +560,24 @@ footer {
         font-size: 2em;
     }
     
-    /* MODIFICACIÓN CLAVE: HEADER: Arreglo de espaciado y estructura */
+    /* HEADER: Estructura de apilamiento */
     .header-container {
-        /* Aseguramos que los 3 elementos principales (Logo, Nav, Botón) se manejen en filas */
         flex-direction: column; /* Apilamos Logo/Botón y luego Nav */
         align-items: center;
         padding: 10px 0;
-        gap: 10px; /* Espacio entre los bloques principales */
+        gap: 5px; /* Reducimos el gap vertical para que se vea compacto */
     }
     
-    /* Nuevo Contenedor para Logo y Botón CV */
+    /* Contenedor de Logo y Botón CV (Línea superior) */
     .logo-and-button-row {
         display: flex;
         width: 100%;
-        justify-content: space-between; /* CLAVE: Separa el Logo y el Botón CV */
+        justify-content: space-between; /* CLAVE: SEPARA ErasmoJim y Descargar CV */
         align-items: center;
-        padding: 0 5%; /* Añadimos padding lateral para que no se pegue a los bordes */
+        padding: 0 20px; /* Padding para que no se pegue a los bordes */
     }
 
     .logo {
-        /* El logo se queda como está, no necesita orden, pero quitamos el padding-right que no funcionó */
         font-size: 1.5em; 
         margin: 0;
     }
@@ -589,26 +588,26 @@ footer {
         font-size: 0.9em;
     }
     
+    /* Navegación (Línea inferior) */
     header nav {
         width: 100%;
-        margin-top: 0; /* Quitamos el margen superior que empujaba */
+        margin-top: 5px; 
     }
     
     header nav ul {
-        justify-content: space-between; /* Espaciar uniformemente los links */
-        flex-wrap: nowrap; /* Evitar que los enlaces se rompan en dos líneas */
+        justify-content: space-around; /* Distribuir uniformemente los 5 links */
+        flex-wrap: nowrap;
         padding: 5px 0;
-        /* Hacemos que el menú ocupe menos espacio lateralmente */
-        width: 95%;
+        width: 98%;
         margin: 0 auto;
     }
     
     header nav ul li a {
-        padding: 5px 6px;
-        font-size: 0.75em; /* Reducir aún más el texto del menú */
+        padding: 5px 3px; /* Reducir padding horizontal */
+        font-size: 0.7em; /* Reducir el texto del menú para que quepa */
     }
     
-    /* HERO: Centrado de Texto y Foto (Conservado) */
+    /* HERO: Centrado de Texto y Foto */
     .hero-portrait {
         min-height: 70vh; 
         padding-top: 80px; 
@@ -629,7 +628,7 @@ footer {
         text-align: center;
     }
     
-    /* Barra Social: Reestablecida la posición vertical lateral */
+    /* Barra Social: Posición lateral */
     .social-bar {
         position: absolute; 
         left: 20px; 
