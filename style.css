@@ -150,7 +150,7 @@ header nav ul li a:hover {
 
 .hero-text {
     margin-top: 20px;
-    text-align: center; /* CLAVE: Asegurar centrado del texto Erasmo Jim */
+    text-align: center; /* CLAVE: Asegurar centrado del texto Erasmo Jim y subtítulo */
 }
 
 .hero-text h1 {
@@ -487,14 +487,14 @@ footer {
 /* Tablets y Dispositivos Medianos (max-width: 992px) */
 @media (max-width: 992px) {
     
-    /* Header: Wrap para que todo quepa sin desbordarse */
+    /* Header: Permite que el contenido se envuelva si es necesario */
     .header-container {
         flex-wrap: wrap; 
         justify-content: center;
     }
     
     header nav {
-        order: 3; /* Mover la navegación al final para que el logo y el CV queden arriba */
+        order: 3; /* Mover la navegación al final */
         width: 100%;
         margin-top: 10px;
     }
@@ -504,7 +504,7 @@ footer {
         flex-wrap: wrap;
     }
     
-    /* Hero: Ajustar el tamaño de la foto y el texto */
+    /* Hero */
     .hero-portrait {
         min-height: 60vh;
         padding-top: 80px; 
@@ -558,9 +558,9 @@ footer {
         font-size: 2em;
     }
     
-    /* Header (Diseño Móvil: Logo arriba, CV y luego Menú) */
+    /* HEADER: Arreglo clave para el menú lineal */
     .header-container {
-        flex-direction: row; /* Mantener horizontal en la parte superior */
+        flex-direction: row; /* CLAVE: Forzar la dirección horizontal */
         justify-content: space-between;
         align-items: center;
         padding: 10px 0;
@@ -568,6 +568,7 @@ footer {
 
     .logo {
         order: 1; /* ErasmoJim a la izquierda */
+        margin: 0;
     }
 
     .btn-cv {
@@ -582,8 +583,8 @@ footer {
     }
     
     header nav ul {
-        justify-content: space-around;
-        flex-wrap: nowrap; /* Evitar que los enlaces se rompan en dos líneas */
+        justify-content: space-between; /* Espaciar uniformemente los 5 links */
+        flex-wrap: nowrap; /* CLAVE: Evitar que los enlaces se rompan en dos líneas */
     }
     
     header nav ul li a {
@@ -591,41 +592,46 @@ footer {
         font-size: 0.8em;
     }
     
-    /* Hero */
+    /* HERO: Centrado de Texto y Barra Social */
     .hero-portrait {
-        min-height: 70vh; /* Darle más espacio al Hero */
+        min-height: 70vh; 
     }
-
+    
     .portrait-photo-bg {
         width: 180px;
         height: 180px;
         margin-bottom: 20px;
     }
-    
+
     /* Ocultar las formas de fondo */
     .hero-portrait::before,
     .hero-portrait::after {
         display: none;
     }
     
-    /* Ajuste de tipografía en Hero */
+    /* Centrado de texto (Ya debe estar centrado gracias a .portrait-container y .hero-text) */
     .hero-text h1 {
         font-size: 2.5em;
+        /* Asegura que el texto esté centrado, aunque ya lo está por .hero-text {text-align: center} */
+        text-align: center;
     }
     .hero-text .subtitle {
         font-size: 1em;
+        text-align: center;
     }
     
-    /* Barra Social (ya está centrada desde el 992px) */
+    /* Barra Social (Se mueve del lateral al centro inferior) */
     .social-bar {
-        margin-top: 10px;
+        position: static; /* CLAVE: Quitar la posición absoluta del lateral */
+        flex-direction: row; /* CLAVE: Horizontal */
+        justify-content: center; /* CLAVE: Centrar iconos */
+        margin-top: 15px;
         gap: 20px;
     }
-    
+
     /* Ajuste de altura de cajas en Capacitación y Portafolio */
     #training .galeria-item,
     .portafolio-galeria .galeria-item {
         height: 150px !important; 
     }
-
 }
