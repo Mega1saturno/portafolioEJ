@@ -66,6 +66,7 @@ header {
 }
 
 .header-container {
+    /* Contenedor principal: Fila de la fila(logo+btn) y el nav */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -74,7 +75,14 @@ header {
     margin: 0 auto;
 }
 
-/* En desktop, el logo (order 0), la nav (order 0) y el btn-cv (order 0) se muestran en orden, justificados */
+/* NUEVA FILA (logo y botón CV) - Contiene los dos elementos principales de la izquierda en desktop */
+.logo-and-button-row {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre el logo y el botón en desktop */
+}
+
+/* El logo y botón ahora están dentro de .logo-and-button-row */
 .logo {
     font-size: 1.5em;
     font-weight: 600;
@@ -489,13 +497,20 @@ footer {
 /* Tablets y Dispositivos Medianos (max-width: 992px) */
 @media (max-width: 992px) {
     
-    /* Header: Permite que el contenido se envuelva si es necesario */
+    /* Header: Permite que el contenido se apile en la vista intermedia */
     .header-container {
-        /* Permitimos que la navegación y el botón se envuelvan */
+        /* Permite que la navegación y la fila caigan en líneas separadas si el espacio es limitado */
         flex-wrap: wrap; 
         justify-content: center;
     }
     
+    /* Ajuste de la fila Logo + Botón en vista Tablet */
+    .logo-and-button-row {
+        width: 100%;
+        justify-content: space-around;
+        margin-bottom: 10px;
+    }
+
     header nav {
         order: 3; /* Mover la navegación al final */
         width: 100%;
@@ -505,10 +520,6 @@ footer {
     header nav ul {
         justify-content: center;
         flex-wrap: wrap;
-    }
-    
-    .logo, .btn-cv {
-        margin: 5px 10px; /* Separar logo y botón en tablet */
     }
     
     /* Hero */
@@ -560,44 +571,42 @@ footer {
         font-size: 2em;
     }
     
-    /* HEADER: Estructura de dos líneas */
+    /* HEADER: Estructura de dos líneas CLAVE */
     .header-container {
-        flex-direction: row; /* Volvemos a fila para forzar el wrap */
-        flex-wrap: wrap; /* CLAVE: Permite que el NAV se caiga a la línea 2 */
-        justify-content: space-between; /* Separa logo y botón */
+        flex-direction: column; /* Apila la fila de arriba y el nav de abajo */
         align-items: center;
         padding: 10px 0;
-        gap: 10px 0;
+        gap: 0;
     }
     
-    /* Línea 1: Logo (Izquierda) y Botón CV (Derecha) */
-    .logo {
-        order: 1; /* Posición 1: Extremo Izquierdo */
-        font-size: 1.5em; 
-        margin: 0;
-        flex-grow: 1; /* Permite que tome el espacio disponible */
+    /* LÍNEA 1 (Logo y Botón CV) */
+    .logo-and-button-row {
+        display: flex; /* Hacemos visible el contenedor en móvil */
+        width: 95%; /* Ocupa casi todo el ancho */
+        justify-content: space-between; /* CLAVE: SEPARA ErasmoJim (izquierda) y Descargar CV (derecha) */
+        align-items: center;
+        margin-bottom: 5px;
     }
-
-    .btn-cv {
-        order: 2; /* Posición 2: Extremo Derecho */
-        margin: 0;
+    
+    /* AJUSTE DEL BOTÓN CV DENTRO DEL CONTENEDOR */
+    .logo-and-button-row .btn-cv {
         padding: 6px 10px; 
         font-size: 0.9em;
+        margin: 0;
     }
     
-    /* Línea 2: Navegación (Centrada) */
+    /* LÍNEA 2 (Navegación) */
     header nav {
-        order: 3; /* Posición 3: Cae a la línea de abajo */
         width: 100%; /* CLAVE: Ocupa todo el ancho de la línea 2 */
         margin-top: 5px; 
     }
     
     header nav ul {
-        justify-content: space-around; /* Distribuir uniformemente los 5 links */
+        justify-content: space-around; /* Distribuye uniformemente los 5 links */
         flex-wrap: nowrap;
         padding: 5px 0;
-        width: 98%;
-        margin: 0 auto; /* Centrar la lista horizontalmente */
+        width: 100%;
+        margin: 0 auto;
     }
     
     header nav ul li a {
