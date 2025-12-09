@@ -1,13 +1,13 @@
-/* Variables y Reseteo Básico (Ajustado)*/
+/* Variables y Reseteo Básico (Ajustado) */
 :root {
     /* Usando colores verdes para coherencia con las insignias NetAcad */
-    --color-primario: #28a745; /* Verde fuerte (NetAcad/Cisco) - Para links, títulos y detalles importantes*/
-    --color-secundario: #1e7e34; /* Verde más oscuro - Para hover y botones*/
-    --color-texto-dark: #222; /* Texto principal oscuro y audaz*/
+    --color-primario: #28a745; /* Verde fuerte (NetAcad/Cisco) - Para links, títulos y detalles importantes */
+    --color-secundario: #1e7e34; /* Verde más oscuro - Para hover y botones */
+    --color-texto-dark: #222; /* Texto principal oscuro y audaz */
     --color-texto-light: #555;
-    --color-fondo: #fcfcff; /* Blanco muy sutil*/
+    --color-fondo: #fcfcff; /* Blanco muy sutil */
     --color-claro: #ffffff;
-    --color-burbuja: rgba(40, 167, 69, 0.1); /* Color de fondo muy sutil, basado en el nuevo primario*/
+    --color-burbuja: rgba(40, 167, 69, 0.1); /* Color de fondo muy sutil, basado en el nuevo primario */
     --font-principal: 'Poppins', sans-serif;
 }
 
@@ -118,11 +118,11 @@ header nav ul li a:hover {
     min-height: 80vh;
     position: relative;
     overflow: hidden;
-    padding-top: 50px; /* Nuevo: espacio superior para header */
+    padding-top: 50px; /* Espacio para que no toque la barra de navegación */
 }
 
 .portrait-container {
-    text-align: center;
+    text-align: center; /* CLAVE: Centrar el contenido de la foto y texto */
     position: relative;
     z-index: 10;
 }
@@ -150,6 +150,7 @@ header nav ul li a:hover {
 
 .hero-text {
     margin-top: 20px;
+    text-align: center; /* CLAVE: Asegurar centrado del texto Erasmo Jim */
 }
 
 .hero-text h1 {
@@ -312,16 +313,13 @@ header nav ul li a:hover {
 
 /* Estilos específicos para la sección de Capacitación */
 #training .servicio-card {
-    /* Mantener el sombreado y transición */
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     transition: none;
     transform: none;
 }
-/* Estilo crucial para la estructura interna de la capacitación */
 #training .servicio-card > div { 
     display: flex;
     gap: 30px;
-    /* Necesitamos que estos divs internos se apilen en móvil, lo manejaremos en la media query */
 }
 
 #training .servicio-card > div > div {
@@ -336,11 +334,10 @@ header nav ul li a:hover {
 }
 
 .galeria-item {
-    background-color: var(--color-burbuja); /* Cambiado a un color más claro */
+    background-color: var(--color-burbuja); 
     height: 250px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    /* Asegurar que las imágenes/contenido ocupen el 100% del galeria-item */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -426,7 +423,6 @@ footer {
 
 /* Contenedor principal que tiene la animación */
 .lightbox-content-container {
-    /* Por defecto, tamaño pequeño para que la imagen lo determine */
     max-width: 90%; 
     max-height: 90vh; 
     width: auto;
@@ -482,23 +478,23 @@ footer {
     opacity: 0.8;
 }
 
+
 /* ========================================================================= */
-/* --- MEDIA QUERIES PARA RESPONSIVIDAD (Ajustes Focales) --- */
+/* --- MEDIA QUERIES PARA RESPONSIVIDAD (CORREGIDAS Y AJUSTADAS) --- */
 /* ========================================================================= */
 
 
 /* Tablets y Dispositivos Medianos (max-width: 992px) */
 @media (max-width: 992px) {
     
-    /* Header */
+    /* Header: Wrap para que todo quepa sin desbordarse */
     .header-container {
-        /* Permite que el logo y el menú se muevan si es necesario */
         flex-wrap: wrap; 
         justify-content: center;
     }
     
     header nav {
-        order: 2; /* Mover la navegación abajo del logo/botón */
+        order: 3; /* Mover la navegación al final para que el logo y el CV queden arriba */
         width: 100%;
         margin-top: 10px;
     }
@@ -508,17 +504,7 @@ footer {
         flex-wrap: wrap;
     }
     
-    header nav ul li a {
-        padding: 5px 10px; 
-        font-size: 0.95em;
-    }
-    
-    .btn-cv {
-        font-size: 0.9em;
-        padding: 6px 12px;
-    }
-    
-    /* Hero */
+    /* Hero: Ajustar el tamaño de la foto y el texto */
     .hero-portrait {
         min-height: 60vh;
         padding-top: 80px; 
@@ -529,7 +515,7 @@ footer {
         height: 280px;
     }
     
-    /* Mover la barra social de lado a abajo (Central) */
+    /* Barra Social: Mover al centro debajo del texto */
     .social-bar {
         position: static;
         flex-direction: row;
@@ -546,35 +532,15 @@ footer {
         gap: 20px;
     }
     
-    .credencial {
-        text-align: center;
-        border-left: none;
-        border-bottom: 5px solid var(--color-primario); 
-    }
-
-    /* Servicios: Asegurar que se mantengan en 1 o 2 columnas */
-    .servicio-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-    
-    /* Capacitación (CAPACITACION.HTML) - SOLUCIÓN PARA LA CAPTURA */
-    /* Forzar que el texto y la imagen/video se apilen verticalmente en la tarjeta */
+    /* Capacitación: Forzar el apilamiento de texto e imagen/video */
     #training .servicio-card > div { 
         flex-direction: column; 
     }
     
-    /* Asegurar que la imagen/video se apile primero (orden -1) */
-    #training .servicio-card > div > div {
-        width: 100%; /* Ocupar todo el ancho */
-        flex: none; 
-    }
-    
-    /* Mover la caja de la galería al inicio de la tarjeta en móvil/tablet */
     #training .servicio-card > div > div:nth-child(2) {
-        order: -1; 
+        order: -1; /* Mover la caja de la galería (imagen/video) al inicio */
     }
     
-    /* Ajustar altura de la caja de imagen en capacitación */
     #training .galeria-item {
         height: 200px !important;
         margin-bottom: 15px;
@@ -588,39 +554,36 @@ footer {
         width: 95%; 
     }
     
-    section {
-        padding: 40px 0;
-    }
-    
     h1 {
         font-size: 2em;
     }
     
-    h3 {
-        font-size: 1.4em;
-        margin-bottom: 25px;
-    }
-    
-    /* Header (Diseño Móvil) */
+    /* Header (Diseño Móvil: Logo arriba, CV y luego Menú) */
     .header-container {
-        flex-direction: column; /* Apilar logo, botón y menú */
+        flex-direction: row; /* Mantener horizontal en la parte superior */
+        justify-content: space-between;
         align-items: center;
         padding: 10px 0;
     }
-    
-    .logo, .btn-cv {
-        margin-bottom: 10px;
+
+    .logo {
+        order: 1; /* ErasmoJim a la izquierda */
+    }
+
+    .btn-cv {
+        order: 2; /* Botón CV a la derecha */
+        margin: 0;
     }
     
     header nav {
-        order: 3; /* Mover la navegación al final */
+        order: 3; /* Navegación debajo */
+        width: 100%;
+        margin-top: 10px;
     }
     
     header nav ul {
         justify-content: space-around;
-        flex-wrap: wrap;
-        width: 100%;
-        margin-top: 5px;
+        flex-wrap: nowrap; /* Evitar que los enlaces se rompan en dos líneas */
     }
     
     header nav ul li a {
@@ -629,9 +592,14 @@ footer {
     }
     
     /* Hero */
+    .hero-portrait {
+        min-height: 70vh; /* Darle más espacio al Hero */
+    }
+
     .portrait-photo-bg {
         width: 180px;
         height: 180px;
+        margin-bottom: 20px;
     }
     
     /* Ocultar las formas de fondo */
@@ -640,25 +608,24 @@ footer {
         display: none;
     }
     
-    /* Capacitación: Ajuste final de altura */
-    #training .galeria-item {
+    /* Ajuste de tipografía en Hero */
+    .hero-text h1 {
+        font-size: 2.5em;
+    }
+    .hero-text .subtitle {
+        font-size: 1em;
+    }
+    
+    /* Barra Social (ya está centrada desde el 992px) */
+    .social-bar {
+        margin-top: 10px;
+        gap: 20px;
+    }
+    
+    /* Ajuste de altura de cajas en Capacitación y Portafolio */
+    #training .galeria-item,
+    .portafolio-galeria .galeria-item {
         height: 150px !important; 
     }
-    
-    /* Portafolio: Ajuste de altura */
-    .galeria-item {
-        height: 150px;
-    }
 
-    /* Lightbox para certificados, más pequeño en móvil */
-    .lightbox-content-container.iframe-mode {
-        width: 95%;      
-        height: 95vh;
-    }
-    
-    .close-btn {
-        font-size: 40px;
-        top: 10px;
-        right: 20px;
-    }
 }
