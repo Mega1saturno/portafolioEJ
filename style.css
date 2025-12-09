@@ -230,31 +230,53 @@ header nav ul li a:hover {
     text-align: center;
 }
 
+/* --- CAMBIOS CLAVE APLICADOS AQUÍ --- */
+
 .credenciales-grid {
     display: flex;
+    /* CLAVE: Permite que las tarjetas salten a la siguiente línea */
+    flex-wrap: wrap; 
+    /* CLAVE: Centra la cuadrícula si no llena el ancho total */
+    justify-content: center; 
     gap: 30px;
     margin: 30px 0;
     text-align: left;
 }
 
 .credencial {
-    flex: 1;
+    /* CLAVE: Fija un ancho base y máximo para que no se aprieten */
+    flex: 0 0 320px; 
+    max-width: 350px;
+    
     background-color: var(--color-claro);
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     border-left: 5px solid var(--color-primario);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Asegura que el contenido (imagen, texto, botones) se organice correctamente */
+    display: flex; 
+    flex-direction: column; 
+}
+
+.credencial:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 /* Insignias */
 .insignia-detalle {
     text-align: center;
+    /* Usa flexbox para manejar la altura de los elementos internos */
+    display: flex; 
+    flex-direction: column; 
+    height: 100%;
 }
 
 .insignia-img {
     width: 100px; 
     height: auto;
-    margin-bottom: 15px;
+    margin: 0 auto 15px; /* Centra la imagen */
     transition: transform 0.3s ease;
     cursor: pointer; 
 }
@@ -273,6 +295,8 @@ header nav ul li a:hover {
     font-size: 0.95em;
     color: var(--color-texto-light);
     margin-bottom: 15px;
+    /* CLAVE: Asegura que el párrafo ocupe el espacio antes de los botones */
+    flex-grow: 1; 
 }
 
 /* Estilo del botón de Certificación */
@@ -287,12 +311,17 @@ header nav ul li a:hover {
     font-weight: 600;
     transition: background-color 0.3s, transform 0.2s;
     cursor: pointer;
+    text-align: center;
+    /* CLAVE: Asegura que el botón se empuje hacia abajo */
+    margin-top: auto; 
 }
 
 .btn-certificado:hover {
     background-color: var(--color-primario);
     transform: translateY(-2px);
 }
+
+/* --- FIN DE CAMBIOS CLAVE --- */
 
 /* Estilos de cuadrícula para otros elementos */
 .servicio-grid {
@@ -539,10 +568,15 @@ footer {
         flex-direction: column; 
     }
     
-    /* Credenciales: Apilar verticalmente */
+    /* Credenciales: Apilar verticalmente o usar ancho completo en pantallas pequeñas */
     .credenciales-grid {
-        flex-direction: column; 
-        gap: 20px;
+        flex-direction: row; /* Mantener la fila, pero permitir el wrap */
+        justify-content: center;
+    }
+    
+    .credencial {
+        flex: 1 1 45%; /* Permite dos columnas en tablet si hay espacio */
+        max-width: 400px;
     }
     
     /* Capacitación: Ajuste de cajas */
@@ -643,6 +677,12 @@ footer {
         transform: translateY(-50%);
         flex-direction: column; 
         gap: 15px; 
+    }
+    
+    /* Credenciales: Una columna en móvil */
+    .credencial {
+        flex: 1 1 100%; /* Una columna completa */
+        max-width: 100%;
     }
 
     /* Ajuste de altura de cajas en Capacitación y Portafolio */
