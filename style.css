@@ -118,6 +118,7 @@ header nav ul li a:hover {
     min-height: 80vh;
     position: relative;
     overflow: hidden;
+    padding-top: 50px; /* Espacio para que no toque la barra de navegación */
 }
 
 .portrait-container {
@@ -309,6 +310,23 @@ header nav ul li a:hover {
     margin-bottom: 15px;
 }
 
+/* Estilos específicos para la sección de Capacitación */
+#training .servicio-card {
+    /* Mantener el sombreado y transición */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: none; /* Desactivar la transición de hover si no se desea */
+    transform: none;
+}
+
+#training .servicio-card > div { /* Contenedor con display: flex; en capacitacion.html */
+    display: flex;
+    gap: 30px;
+}
+
+#training .servicio-card > div > div {
+    flex: 1;
+}
+
 .portafolio-galeria {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -450,4 +468,159 @@ footer {
     color: var(--color-primario);
     text-decoration: none;
     opacity: 0.8;
+}
+
+/* ========================================================================= */
+/* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
+/* ========================================================================= */
+
+
+/* Tablets y Dispositivos Medianos (max-width: 992px) */
+@media (max-width: 992px) {
+    
+    /* Header */
+    header nav ul li a {
+        padding: 0 10px; /* Reducir padding de links */
+        font-size: 0.95em;
+    }
+    
+    .btn-cv {
+        font-size: 0.9em;
+        padding: 6px 12px;
+    }
+    
+    /* Hero */
+    .hero-portrait {
+        min-height: 60vh;
+    }
+    
+    .portrait-photo-bg {
+        width: 300px;
+        height: 300px;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+    
+    .social-bar {
+        /* Mover la barra social a la parte inferior para no interferir con el retrato */
+        position: static;
+        flex-direction: row;
+        gap: 30px;
+        margin-top: 30px;
+        transform: none;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Cuadrículas */
+    .credenciales-grid {
+        flex-direction: column; /* Apilar credenciales verticalmente */
+        gap: 20px;
+    }
+    
+    .credencial {
+        text-align: center;
+        border-left: none;
+        border-bottom: 5px solid var(--color-primario); /* Usar borde inferior en lugar de lateral */
+    }
+
+    /* Capacitación (Manejar el flex dentro del servicio-card) */
+    #training .servicio-card > div {
+        flex-direction: column;
+    }
+    
+    #training .servicio-card .galeria-item {
+        order: -1; /* Mover la imagen/video box al inicio en móvil */
+        margin-bottom: 20px;
+        height: 180px !important; /* Ajustar altura para móvil */
+    }
+    
+}
+
+/* Teléfonos y Dispositivos Pequeños (max-width: 600px) */
+@media (max-width: 600px) {
+    
+    .container {
+        width: 95%; /* Usar más ancho en móvil */
+    }
+    
+    section {
+        padding: 50px 0;
+    }
+    
+    h1 {
+        font-size: 2.5em;
+    }
+    
+    h3 {
+        font-size: 1.5em;
+        margin-bottom: 30px;
+    }
+    
+    /* Header (Menú Hambuerguesa no implementado, así que ocultamos algunos elementos para simplificar) */
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    header nav {
+        order: 2; /* Mover la navegación abajo */
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    header nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    header nav ul li a {
+        padding: 5px 10px;
+    }
+    
+    .btn-cv {
+        display: none; /* Ocultar el botón CV para dejar más espacio al menú */
+    }
+    
+    .logo {
+        margin-bottom: 10px;
+    }
+    
+    /* Hero */
+    .portrait-photo-bg {
+        width: 250px;
+        height: 250px;
+    }
+    
+    /* Ocultar las formas de fondo para simplificar la vista en móvil */
+    .hero-portrait::before,
+    .hero-portrait::after {
+        display: none;
+    }
+    
+    /* Contacto */
+    .contacto form {
+        padding: 20px;
+    }
+
+    /* Portafolio (Ajustar altura de la galería) */
+    .galeria-item {
+        height: 200px;
+    }
+    
+}
+
+/* Estilo para manejar el flex de las tarjetas en el Paso 1 de Capacitación */
+@media (max-width: 992px) {
+    /* Específico para Paso 1 y Paso 2 de capacitacion.html */
+    #training .servicio-card > div { 
+        flex-direction: column;
+    }
+    #training .servicio-card .galeria-item {
+        order: -1; /* Mueve la caja de la imagen/video arriba de la lista de conceptos */
+        margin-bottom: 20px;
+        height: 180px;
+    }
 }
