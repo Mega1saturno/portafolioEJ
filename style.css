@@ -312,7 +312,7 @@ header nav ul li a:hover {
     margin-bottom: 15px;
 }
 
-/* Estilos específicos para la sección de Capacitación */
+/* Estilos específicos para la sección de Capacitación (para capacitacion.html) */
 #training .servicio-card {
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     transition: none;
@@ -327,6 +327,7 @@ header nav ul li a:hover {
     flex: 1;
 }
 
+
 .portafolio-galeria {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -335,11 +336,11 @@ header nav ul li a:hover {
 }
 
 .galeria-item {
-    background-color: var(--color-burbuja); 
+    background-color: var(--color-burbuja); /* Usamos burbuja en lugar de gris-claro para consistencia */
     height: 250px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    display: flex;
+    display: flex; /* Asegurar centrado de contenido en la galería */
     justify-content: center;
     align-items: center;
 }
@@ -559,19 +560,20 @@ footer {
         font-size: 2em;
     }
     
-    /* HEADER: Arreglo clave para el menú lineal */
+    /* HEADER: Arreglo clave para el menú lineal y ESPACIADO DE LOGO/BOTÓN */
     .header-container {
-        /* Usamos flex-wrap para que el menú pueda ir debajo, pero lo forzamos a ser lineal */
         flex-direction: row; 
-        justify-content: space-between;
+        justify-content: space-between; /* CLAVE: Separa ErasmoJim y Descargar CV */
         align-items: center;
         padding: 10px 0;
         flex-wrap: wrap; 
+        gap: 10px 0; /* Espacio vertical si los elementos se envuelven */
     }
 
     .logo {
         order: 1; 
         margin: 0;
+        padding-right: 10px; /* CLAVE: Margen a la derecha del logo */
     }
 
     .btn-cv {
