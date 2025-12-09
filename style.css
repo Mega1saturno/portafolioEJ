@@ -312,7 +312,7 @@ header nav ul li a:hover {
     margin-bottom: 15px;
 }
 
-/* Estilos específicos para la sección de Capacitación (para capacitacion.html) */
+/* Estilos específicos para la sección de Capacitación */
 #training .servicio-card {
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
     transition: none;
@@ -327,7 +327,6 @@ header nav ul li a:hover {
     flex: 1;
 }
 
-
 .portafolio-galeria {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -336,11 +335,11 @@ header nav ul li a:hover {
 }
 
 .galeria-item {
-    background-color: var(--color-burbuja); /* Usamos burbuja en lugar de gris-claro para consistencia */
+    background-color: var(--color-burbuja); 
     height: 250px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    display: flex; /* Asegurar centrado de contenido en la galería */
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -560,39 +559,48 @@ footer {
         font-size: 2em;
     }
     
-    /* HEADER: Arreglo clave para el menú lineal y ESPACIADO DE LOGO/BOTÓN */
+    /* MODIFICACIÓN CLAVE: HEADER: Arreglo de espaciado y estructura */
     .header-container {
-        flex-direction: row; 
-        justify-content: space-between; /* CLAVE: Separa ErasmoJim y Descargar CV */
+        /* Aseguramos que los 3 elementos principales (Logo, Nav, Botón) se manejen en filas */
+        flex-direction: column; /* Apilamos Logo/Botón y luego Nav */
         align-items: center;
         padding: 10px 0;
-        flex-wrap: wrap; 
-        gap: 10px 0; /* Espacio vertical si los elementos se envuelven */
+        gap: 10px; /* Espacio entre los bloques principales */
+    }
+    
+    /* Nuevo Contenedor para Logo y Botón CV */
+    .logo-and-button-row {
+        display: flex;
+        width: 100%;
+        justify-content: space-between; /* CLAVE: Separa el Logo y el Botón CV */
+        align-items: center;
+        padding: 0 5%; /* Añadimos padding lateral para que no se pegue a los bordes */
     }
 
     .logo {
-        order: 1; 
+        /* El logo se queda como está, no necesita orden, pero quitamos el padding-right que no funcionó */
+        font-size: 1.5em; 
         margin: 0;
-        padding-right: 10px; /* CLAVE: Margen a la derecha del logo */
     }
 
     .btn-cv {
-        order: 2; 
         margin: 0;
-        padding: 6px 10px; /* Reducir tamaño del botón CV */
+        padding: 6px 10px; 
         font-size: 0.9em;
     }
     
     header nav {
-        order: 3; /* Navegación debajo */
         width: 100%;
-        margin-top: 10px;
+        margin-top: 0; /* Quitamos el margen superior que empujaba */
     }
     
     header nav ul {
-        justify-content: space-between; /* Espaciar uniformemente los 5 links */
-        flex-wrap: nowrap; /* CLAVE: Evitar que los enlaces se rompan en dos líneas */
+        justify-content: space-between; /* Espaciar uniformemente los links */
+        flex-wrap: nowrap; /* Evitar que los enlaces se rompan en dos líneas */
         padding: 5px 0;
+        /* Hacemos que el menú ocupe menos espacio lateralmente */
+        width: 95%;
+        margin: 0 auto;
     }
     
     header nav ul li a {
@@ -600,13 +608,12 @@ footer {
         font-size: 0.75em; /* Reducir aún más el texto del menú */
     }
     
-    /* HERO: Centrado de Texto y Foto */
+    /* HERO: Centrado de Texto y Foto (Conservado) */
     .hero-portrait {
         min-height: 70vh; 
         padding-top: 80px; 
     }
     
-    /* Centrado de la foto y el texto (Ya está configurado en el bloque principal con text-align: center) */
     .portrait-photo-bg {
         width: 180px;
         height: 180px;
@@ -625,11 +632,11 @@ footer {
     /* Barra Social: Reestablecida la posición vertical lateral */
     .social-bar {
         position: absolute; 
-        left: 20px; /* Mover más cerca del borde para liberar espacio */
+        left: 20px; 
         top: 50%;
         transform: translateY(-50%);
-        flex-direction: column; /* CLAVE: Vertical */
-        gap: 15px; /* Reducir espacio entre iconos */
+        flex-direction: column; 
+        gap: 15px; 
     }
 
     /* Ajuste de altura de cajas en Capacitación y Portafolio */
