@@ -18,27 +18,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Lógica del Lightbox (Visor de Insignias y Certificados) ---
+    // --- Lógica del Lightbox (Visor de Insignias, Certificados y AHORA Videos) ---
     const lightbox = document.getElementById('lightbox');
     const lightboxContentContainer = document.getElementById('lightbox-content-container');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxIframe = document.getElementById('lightbox-iframe');
     const closeBtn = document.getElementById('close-btn');
 
-    // Función para mostrar el lightbox y configurar el contenido (Imagen o Certificado/Iframe)
+    // Función para mostrar el lightbox y configurar el contenido (Imagen, Certificado/Iframe o Video)
     function showLightbox(type, content) {
         // 1. Reiniciar el estado
         lightboxImg.style.display = 'none';
         lightboxIframe.style.display = 'none';
-        lightboxContentContainer.classList.remove('iframe-mode');
+        lightboxContentContainer.classList.remove('iframe-mode'); // Asegurar que el tamaño se reinicie
 
         // 2. Configurar el contenido y el modo
         if (type === 'image') {
             lightboxImg.src = content;
             lightboxImg.style.display = 'block';
-            lightboxIframe.src = ''; // Limpiar el iframe por si acaso
+            lightboxIframe.src = ''; 
 
-        } else if (type === 'certificate') {
+        } else if (type === 'certificate' || type === 'video') { // *** LÓGICA UNIFICADA: Maneja certificado y video ***
+            lightboxIframe.src = ''; // Limpiar la fuente antes de cargar la nueva
             lightboxIframe.src = content;
             lightboxIframe.style.display = 'block';
             lightboxContentContainer.classList.add('iframe-mode'); // Activa el tamaño grande en CSS
@@ -61,11 +62,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const certificateBtns = document.querySelectorAll('.btn-open-certificate');
     certificateBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
-            e.preventDefault(); // CLAVE: EVITA ABRIR UNA NUEVA PESTAÑA
+            e.preventDefault(); 
             
             const certificateUrl = this.getAttribute('data-certificate-url');
             
-            // Revisa si hay un enlace configurado
             if (certificateUrl) { 
                 showLightbox('certificate', certificateUrl);
             } else {
@@ -73,8 +73,24 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // 3. Manejar el clic en las Carátulas de Video (NUEVA LÓGICA)
+    const videoBtns = document.querySelectorAll('.btn-open-video');
+    videoBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Obtenemos la URL del video del atributo data-video-url
+            const videoUrl = this.getAttribute('data-video-url');
+            
+            if (videoUrl) { 
+                // Llamamos a la función con el tipo 'video'
+                showLightbox('video', videoUrl);
+            } else {
+                console.error('No se encontró la URL del video para este laboratorio.');
+            }
+        });
+    });
 
-    // 3. Manejar el cierre (Conservado)
+    // 4. Manejar el cierre (Conservado)
     closeBtn.addEventListener('click', function() {
         lightbox.style.display = 'none';
         lightboxIframe.src = ''; // Limpiar el iframe al cerrar 
